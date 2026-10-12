@@ -13,6 +13,11 @@ import type { Side, SystemId } from '../../src/types/anatomy'
  * outside the eight systems: digestive, urinary, reproductive, integument,
  * glands), are NOT guessed into a system; the build script logs them to
  * assets/anatomy/build-logs/unclassified.json.
+ *
+ * Matching discipline: every keyword is a whole word, bounded by \b on both
+ * sides. Where a family of words is intended, the stem is written explicitly as
+ * `stem\w*` (e.g. `bronch\w*` for bronchus/bronchial). A bare prefix matches
+ * inside unrelated words: "retina" once matched "flexor retinaculum".
  */
 
 export interface Rule {
@@ -29,17 +34,17 @@ export const RULES: Rule[] = [
   {
     system: null,
     category: 'Digestive',
-    name: /\b(gingiva|tongue|lip|esophag|stomach|duoden|jejun|ile(um|ocecal)|colon|cecum|rectum|anal canal|appendix|mesoappendix|mesocolon|mesentery|liver|hepat(ic|o)|caudate lobe|biliary|gallbladder|cystic duct|pancrea|taenia|submandibular gland|sublingual gland|parotid)/i,
-    unless: /\b(arter|vein|venous|nerve|plexus)/i,
+    name: /\b(gingiva|tongue|lips?|esophag\w*|stomach|duoden\w*|jejun\w*|ileum|ileocecal|colon|cecum|rectum|anal canal|appendix|mesoappendix|mesocolon|mesentery|liver|hepatic|hepato\w*|caudate lobe|biliary|gallbladder|cystic duct|pancrea\w*|taenia|submandibular gland|sublingual gland|parotid)\b/i,
+    unless: /\b(arter\w*|veins?|venous|nerves?|plexus)\b/i,
   },
   { system: null, category: 'Digestive', ancestor: /^(zone of (small intestine|ileum|jejunum)|segment of liver)$/i },
   {
     system: null,
     category: 'Urogenital',
-    name: /\b(kidney|ureter|urinary bladder|urethra|prostate|testis|epididym|deferent duct|seminal vesicle|penis|glans|scrot|ovary|uter|vagin)/i,
-    unless: /\b(arter|vein|venous|nerve)/i,
+    name: /\b(kidneys?|ureters?|ureteric|urinary bladder|urethra|prostate|testis|epididym\w*|deferent duct|seminal vesicle|penis|glans|scrot\w*|ovary|uter\w*|vagin\w*)\b/i,
+    unless: /\b(arter\w*|veins?|venous|nerves?)\b/i,
   },
-  { system: null, category: 'Integument', name: /^(skin|hair of head|pubic hair|eyebrow|eyelash)/i },
+  { system: null, category: 'Integument', name: /^(skin|hair of head|pubic hair|eyebrows?|eyelash(es)?)\b/i },
   { system: null, category: 'Endocrine / lymphoid', name: /\b(adrenal gland|lobe of thymus|thymus|thyroid gland|spleen|lymph node)\b/i },
 
   // ---- vessels ---------------------------------------------------------------
@@ -66,16 +71,16 @@ export const RULES: Rule[] = [
 
   // ---- heart -----------------------------------------------------------------
   { system: 'heart', category: 'Heart valve', name: /\b(cusp of (aortic|pulmonary) valve|leaflet of (mitral|tricuspid) valve|valve)\b/i },
-  { system: 'heart', category: 'Papillary muscle', name: /papillary muscle/i },
+  { system: 'heart', category: 'Papillary muscle', name: /\bpapillary muscles?\b/i },
   { system: 'heart', category: 'Heart chamber', name: /\b(atrium|atrial|(wall|cavity) of (left |right )?ventricle|interventricular septum|myocardium|heart)\b/i },
   { system: 'heart', category: 'Heart', ancestor: /^(heart|region of heart|cardiac chamber|wall of heart|cavity of cardiac chamber)$/i },
 
   // ---- respiratory -------------------------------------------------------------
-  { system: 'respiratory', category: 'Airway', name: /\b(trachea|bronch|lung|lobe of (left|right) lung|pulmonary segment)/i },
+  { system: 'respiratory', category: 'Airway', name: /\b(trachea|bronch\w*|lungs?|lobe of (left|right) lung|pulmonary segment)\b/i },
   {
     system: 'respiratory',
     category: 'Larynx',
-    name: /\b(larynx|laryngeal (cartilage|ligament)|epiglott|vocal (ligament|fold)|conus elasticus|thyrohyoid (membrane|ligament)|cricothyroid ligament|thyro-epiglottic|hyo-epiglottic|thyroid cartilage|cricoid cartilage|arytenoid cartilage|corniculate cartilage|cuneiform cartilage)/i,
+    name: /\b(larynx|laryngeal (cartilage|ligament)|epiglott\w*|vocal (ligament|fold)|conus elasticus|thyrohyoid (membrane|ligament)|cricothyroid ligament|thyro-epiglottic|hyo-epiglottic|thyroid cartilage|cricoid cartilage|arytenoid cartilage|corniculate cartilage|cuneiform cartilage)\b/i,
   },
   { system: 'respiratory', category: 'Airway', ancestor: /^(segment of tracheobronchial tree|segment of bronchial tree|lung|larynx|trachea)$/i },
   { system: 'respiratory', category: 'Nasal cartilage', name: /\b(septal nasal cartilage|lateral nasal cartilage|major alar cartilage|minor alar cartilage)\b/i },
@@ -86,7 +91,7 @@ export const RULES: Rule[] = [
   {
     system: 'nervous',
     category: 'Brain',
-    name: /\b(brain|cerebr|cerebell|thalamus|hypothalamus|hippocamp|amygdala|fornix|corpus callosum|pons|medulla oblongata|midbrain|mesencephalon|gyrus|lobule|lobe of cerebr|(frontal|parietal|temporal|occipital|limbic|insular) lobe|insula|putamen|caudate nucleus|lentiform|claustrum|globus pallidus|mammillary|pituitary|pineal|choroid plexus|interpeduncular|cerebral aqueduct|interventricular foramen|(lateral|third|fourth) ventricle|tentorium|falx|dura mater|arachnoid|pia mater|optic chiasm|optic tract)/i,
+    name: /\b(brain|brainstem|cerebr\w*|cerebell\w*|thalamus|hypothalamus|hippocamp\w*|amygdala|fornix|corpus callosum|pons|medulla oblongata|midbrain|mesencephalon|gyrus|lobule|(frontal|parietal|temporal|occipital|limbic|insular) lobe|insula|putamen|caudate nucleus|lentiform\w*|claustrum|globus pallidus|mammillary|pituitary|pineal|choroid plexus|interpeduncular|cerebral aqueduct|interventricular foramen|(lateral|third|fourth) ventricle|tentorium|falx|dura mater|arachnoid|pia mater|optic chiasm|optic tract)\b/i,
   },
   {
     system: 'nervous',
@@ -99,17 +104,17 @@ export const RULES: Rule[] = [
   {
     system: 'sensory',
     category: 'Eye',
-    name: /\b(eyeball|retina|cornea|sclera|iris|\blens\b|choroid|ciliar|corona ciliaris|vitreous|chamber of eyeball|lacrimal|nasolacrimal|tarsal plate|eyelid|conjunctiv|common tendinous ring|check ligament|trochlea of (left |right )?superior oblique|suspensory ligament of lens|orbital septum)/i,
+    name: /\b(eyeballs?|retina|cornea|sclera|iris|lens|choroid|ciliar\w*|corona ciliaris|vitreous|chamber of eyeball|lacrimal|nasolacrimal|tarsal plate|eyelids?|conjunctiv\w*|common tendinous ring|check ligament|trochlea of (left |right )?superior oblique|suspensory ligament of lens|orbital septum)\b/i,
   },
   {
     system: 'sensory',
     category: 'Ear',
-    name: /\b(external ear|auricle|external acoustic|tympanic|cochlea|vestibul|semicircular|malleus|incus|stapes|auditory ossicle|labyrinth|middle ear|internal ear)/i,
+    name: /\b(external ear|auricle|external acoustic|tympanic|cochlea|vestibul\w*|semicircular|malleus|incus|stapes|auditory ossicles?|labyrinth|middle ear|internal ear)\b/i,
   },
 
   // ---- skeleton ----------------------------------------------------------------
   { system: 'skeleton', category: 'Tooth', name: /\btooth\b|\bteeth\b|\b(incisor|canine|premolar|molar)\b/i },
-  { system: 'skeleton', category: 'Intervertebral disk', name: /intervertebral dis[ck]/i },
+  { system: 'skeleton', category: 'Intervertebral disk', name: /\bintervertebral dis[ck]s?\b/i },
   { system: 'skeleton', category: 'Cartilage', name: /\bcartilage\b/i },
   { system: 'skeleton', category: 'Joint', name: /\b(symphysis|articular dis[ck]|meniscus|interosseous membrane|joint capsule)\b/i },
   {

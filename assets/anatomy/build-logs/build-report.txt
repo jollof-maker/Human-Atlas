@@ -1,7 +1,7 @@
 skeleton       276 pieces     651,636 →   245,222 tris
-muscles        438 pieces   2,471,374 →   565,158 tris
+muscles        440 pieces   2,475,222 →   567,728 tris
 heart           23 pieces     108,510 →    35,118 tris
-sensory         49 pieces     322,212 →    76,476 tris
+sensory         47 pieces     318,364 →    73,906 tris
 arteries       636 pieces     976,552 →   211,088 tris
 veins          395 pieces     945,916 →   127,752 tris
 nervous        148 pieces     535,570 →   169,530 tris
@@ -14,6 +14,7 @@ landmarks: {"headY":0.694670632481575,"chinY":0.6348706036806107,"neckY":0.53849
 
 regions: Thorax 591, Head 469, Abdomen 173, Neck 157, Hand 156, Foot 147, Forearm 86, Leg 80, Hip 66, Thigh 56, Shoulder 52, Pelvis 37, Arm 22
 collections: brain 204, hand 156, foot 147, heart 127, thigh 56, shoulder 56
-sides: right/name 859, left/name 843, midline/none 356, right/mirror 17, left/mirror 17
-categories: arteries:Artery 636, muscles:Muscle 424, veins:Vein 395, skeleton:Bone 203, nervous:Brain 111, respiratory:Airway 101, sensory:Eye 48, nervous:Nerve 36, skeleton:Tooth 28, skeleton:Intervertebral disk 23, respiratory:Larynx 21, muscles:Tendon 14, skeleton:Cartilage 14, heart:Heart valve 11, heart:Heart chamber 7, heart:Papillary muscle 5, respiratory:Nasal cartilage 5, skeleton:Joint 4, skeleton:Ligament 4, nervous:Spinal cord 1, sensory:Ear 1
+corrections: FJ1469 → Right flexor pollicis brevis; FJ1469M → Left flexor pollicis brevis; FJ2190 → Left fibular vein
+sides: right/name 857, left/name 842, midline/none 356, right/mirror 17, left/mirror 17, left/correction 2, right/correction 1
+categories: arteries:Artery 636, muscles:Muscle 424, veins:Vein 395, skeleton:Bone 203, nervous:Brain 111, respiratory:Airway 101, sensory:Eye 46, nervous:Nerve 36, skeleton:Tooth 28, skeleton:Intervertebral disk 23, respiratory:Larynx 21, muscles:Tendon 16, skeleton:Cartilage 14, heart:Heart valve 11, heart:Heart chamber 7, heart:Papillary muscle 5, respiratory:Nasal cartilage 5, skeleton:Joint 4, skeleton:Ligament 4, nervous:Spinal cord 1, sensory:Ear 1
 unclassified: Digestive 109, Urogenital 18, Endocrine / lymphoid 5, Integument 4

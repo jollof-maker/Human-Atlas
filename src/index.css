@@ -843,6 +843,16 @@ input:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
+.corrected-tag {
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(19, 36, 45, 0.06);
+  font-size: 9.5px;
+  color: var(--muted);
+  cursor: help;
+}
+
 .rel {
   margin: 0 0 12px;
 }

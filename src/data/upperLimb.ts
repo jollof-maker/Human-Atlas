@@ -57,8 +57,8 @@ export function classifyUpperLimb(entries: ManifestEntry[]): Map<string, LimbMem
     const bySide: LimbSide | null = e.side === 'left' || e.side === 'right' ? e.side : null
     const byPosition: LimbSide = x > 0 ? 'left' : 'right'
     // Which shoulder a piece swings about is physical, so position wins when it
-    // clearly contradicts the name: BodyParts3D swaps the names of the flexor
-    // pollicis brevis pair (FJ1469 "Left …" lies in the right hand, FJ1469M the reverse).
+    // clearly contradicts the name. Known BodyParts3D side errors are fixed at
+    // build time (scripts/anatomy-corrections.json); this is a safety net.
     const contradicts = bySide !== null && bySide !== byPosition && Math.abs(x) > MIDLINE_TOLERANCE
     const side: LimbSide | null = contradicts ? byPosition : (bySide ?? (e.region === 'Hand' ? byPosition : null))
     if (side) out.set(e.id, { side, crossing })

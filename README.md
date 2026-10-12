@@ -44,11 +44,12 @@ For each OBJ it:
 1. **Parses** the mesh and its header (English name, FMA concept, volume). It converts BodyParts3D millimetres (+X patient-left, −Y anterior, +Z up) to scene metres (+Y up, +Z anterior) and repairs inconsistent winding. Unnamed files fall back to the most specific concept in the element tables.
 2. **Classifies** the piece into one of 8 systems: skeleton, muscles, heart, sensory organs, arteries, veins, nervous system, respiratory. Ordered rules in `scripts/lib/classify.ts` match the name and the FMA `is_a` / `part_of` ancestors. Nothing is guessed. Pieces outside those systems (digestive, urogenital, endocrine/lymphoid, integument) are written to `assets/anatomy/build-logs/unclassified.json` with the reason and their ancestors. In the current build that is 136 pieces.
 3. **Detects side** from the name ("left"/"right"). Only for the dataset's explicit unnamed mirror pairs (`FJxxxx` / `FJxxxxM`) is side read from geometry; the manifest records this as `sideSource: "mirror"`.
-4. **Drops exact duplicates** (identical meshes filed under two ids) to prevent z-fighting, logging them to `build-logs/duplicates.json`.
-5. **Assigns a coarse region** (Head, Thorax, Forearm, Hand …) and **specimen collections** from skeletal landmarks found in the data (`scripts/lib/regions.ts`).
-6. **Computes "nearby" structures** from sampled surface proximity (< 4 mm). This is geometry only and is never presented as an anatomical connection.
-7. **Lays out the atlas sheet** (`src/lib/atlasLayout.ts`, shared with the app) to produce `explodedPosition`.
-8. **Writes one GLB per system**: welded, simplified with meshoptimizer, quantized, and meshopt-compressed. 2,092 pieces, about 1.48 M triangles, about 17 MB in total. The simplification error is adjustable: `npm run build:anatomy -- --error 0.004` (fraction of each piece's radius).
+4. **Applies hand-checked corrections** from `scripts/anatomy-corrections.json`, where BodyParts3D's name or side is clearly wrong for the geometry (for example the swapped flexor pollicis brevis pair). Each entry records its evidence, and the build refuses a correction that contradicts the mesh position. The original BodyParts3D name stays in the manifest (`correction.originalName`) and appears in the info panel.
+5. **Drops exact duplicates** (identical meshes filed under two ids) to prevent z-fighting, logging them to `build-logs/duplicates.json`.
+6. **Assigns a coarse region** (Head, Thorax, Forearm, Hand …) and **specimen collections** from skeletal landmarks found in the data (`scripts/lib/regions.ts`).
+7. **Computes "nearby" structures** from sampled surface proximity (< 4 mm). This is geometry only and is never presented as an anatomical connection.
+8. **Lays out the atlas sheet** (`src/lib/atlasLayout.ts`, shared with the app) to produce `explodedPosition`.
+9. **Writes one GLB per system**: welded, simplified with meshoptimizer, quantized, and meshopt-compressed. 2,092 pieces, about 1.48 M triangles, about 17 MB in total. The simplification error is adjustable: `npm run build:anatomy -- --error 0.004` (fraction of each piece's radius).
 
 `build-logs/build-report.txt` lists counts per system, region, collection, side and category.
 

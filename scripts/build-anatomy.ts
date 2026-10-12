@@ -42,6 +42,19 @@ const argValue = (k: string, d: number) => {
 }
 const SIMPLIFY_ERROR = argValue('--error', 0.0025)
 
+/** Hand-checked fixes to BodyParts3D names/sides (see the file's $comment). */
+interface Correction {
+  id: string
+  name: string
+  side: Side
+  comment: string
+}
+const CORRECTIONS = new Map<string, Correction>(
+  (JSON.parse(readFileSync(join(ROOT, 'scripts/anatomy-corrections.json'), 'utf8')).corrections as Correction[]).map(
+    (c) => [c.id, c],
+  ),
+)
+
 const SYSTEMS: SystemId[] = ['skeleton', 'muscles', 'heart', 'sensory', 'arteries', 'veins', 'nervous', 'respiratory']
 
 /** Ancestors too generic to be useful in descriptions. */
@@ -125,6 +138,8 @@ interface Piece {
   rule: number
   side: Side
   sideSource: ManifestEntry['sideSource']
+  /** Set when anatomy-corrections.json overrides BodyParts3D's name/side. */
+  correction: ManifestEntry['correction']
 }
 
 const t0 = Date.now()
@@ -139,7 +154,9 @@ for (const [i, f] of files.entries()) {
   const elementConcept = isaConceptOf(id) ?? isaConceptOf(baseId)
   const concept = mesh.header.conceptId || elementConcept || ''
   const rawName = mesh.header.name || (elementConcept ? names.get(elementConcept) ?? '' : '')
-  const name = capitalize(rawName.trim())
+  const sourceName = capitalize(rawName.trim())
+  const fix = CORRECTIONS.get(id)
+  const name = fix ? fix.name : sourceName
 
   const isaStart = isaParents.has(concept) ? concept : elementConcept
   const isaChain = [
@@ -176,6 +193,7 @@ for (const [i, f] of files.entries()) {
     rule: cls?.rule ?? -1,
     side: 'midline',
     sideSource: 'none',
+    correction: fix ? { originalName: sourceName, reason: fix.comment } : undefined,
   })
   if ((i + 1) % 250 === 0) console.log(`  parsed ${i + 1}/${files.length}`)
 }
@@ -208,7 +226,21 @@ for (const a of [1, 2]) {
 
 // -------------------------------------------------------------------- sides --
 const ids = new Set(pieces.map((p) => p.id))
+for (const id of CORRECTIONS.keys()) {
+  if (!ids.has(id)) throw new Error(`anatomy-corrections.json: unknown element id ${id}`)
+}
 for (const pc of pieces) {
+  const fix = CORRECTIONS.get(pc.id)
+  if (fix) {
+    // Guard against a correction that disagrees with the geometry it claims to fix.
+    const cx = (pc.min[0] + pc.max[0]) / 2
+    if (fix.side !== 'midline' && (cx > 0 ? 'left' : 'right') !== fix.side) {
+      throw new Error(`anatomy-corrections.json: ${pc.id} is corrected to ${fix.side}, but its centre is at x=${cx.toFixed(3)}`)
+    }
+    pc.side = fix.side
+    pc.sideSource = 'correction'
+    continue
+  }
   const named = sideFromName(pc.name)
   if (named) {
     pc.side = named
@@ -264,6 +296,25 @@ writeFileSync(
     2,
   ),
 )
+
+// Dry run: `npm run build:anatomy -- --classify-only <out.json>` writes every
+// piece's classification and side, then stops before any geometry work. Used to
+// diff rule changes before committing to a rebuild.
+if (args.includes('--classify-only')) {
+  const out = args[args.indexOf('--classify-only') + 1] ?? join(LOGS, 'classification.json')
+  writeFileSync(
+    out,
+    JSON.stringify(
+      pieces
+        .filter((p) => !duplicateIds.has(p.id))
+        .map((p) => ({ id: p.id, name: p.name, system: p.system, category: p.category, side: p.side })),
+      null,
+      1,
+    ),
+  )
+  console.log(`Classification written to ${out}`)
+  process.exit(0)
+}
 
 // ----------------------------------------------------------------- regions --
 const regionPieces: RegionPiece[] = classified.map((p) => ({
@@ -400,6 +451,7 @@ const entries: ManifestEntry[] = classified.map((pc, i) => {
     region,
     side: pc.side,
     sideSource: pc.sideSource,
+    ...(pc.correction ? { correction: pc.correction } : {}),
     meshFile: `${pc.system}.glb`,
     assembledPosition: round(centerOf(pc)),
     explodedPosition: round(layout.positions.get(pc.id)!),
@@ -448,6 +500,7 @@ report.push(
   '',
   'regions: ' + count(entries.map((e) => e.region)).map(([k, v]) => `${k} ${v}`).join(', '),
   'collections: ' + count(entries.flatMap((e) => e.collections)).map(([k, v]) => `${k} ${v}`).join(', '),
+  'corrections: ' + [...CORRECTIONS.values()].map((c) => `${c.id} → ${c.name}`).join('; '),
   'sides: ' + count(entries.map((e) => `${e.side}/${e.sideSource}`)).map(([k, v]) => `${k} ${v}`).join(', '),
   'categories: ' + count(entries.map((e) => `${e.system}:${e.category}`)).map(([k, v]) => `${k} ${v}`).join(', '),
   'unclassified: ' + count(unclassified.map((p) => (p.rule >= 0 ? RULES[p.rule].category : 'no rule'))).map(([k, v]) => `${k} ${v}`).join(', '),

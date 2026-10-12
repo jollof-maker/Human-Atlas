@@ -37,6 +37,9 @@ function Details({ data, s }: { data: AtlasData; s: Structure }) {
   const rel = relationsFor(data, s)
   const hasAttachments = rel.origin.length + rel.insertion.length + rel.supply.length > 0
   const ids = s.pieces.map((p) => p.id)
+  // Name/side overridden by scripts/anatomy-corrections.json: keep the source name traceable.
+  const correctedPiece = s.pieces.find((p) => p.correction)
+  const corrected = correctedPiece?.correction
   return (
     <>
       <div className="info-top">
@@ -56,6 +59,16 @@ function Details({ data, s }: { data: AtlasData; s: Structure }) {
             {ids.length > 1 && <span style={{ color: 'var(--muted)' }}> +{ids.length - 1}</span>}
           </dd>
         </div>
+        {corrected && (
+          <div title={corrected.reason}>
+            <dt>BodyParts3D name</dt>
+            <dd>
+              {ids.length > 1 && <span style={{ color: 'var(--muted)' }}>{correctedPiece!.id}: </span>}
+              {corrected.originalName}
+              <span className="corrected-tag">corrected</span>
+            </dd>
+          </div>
+        )}
         <div>
           <dt>System</dt>
           <dd>{SYSTEM_BY_ID[s.system].label}</dd>

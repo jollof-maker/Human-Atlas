@@ -31,8 +31,13 @@ export interface ManifestEntry {
   /** Coarse body region computed from skeletal landmarks ("Thorax", "Forearm" ...). */
   region: string
   side: Side
-  /** How `side` was established: from the name, or from a mirrored file pair (…M). */
-  sideSource: 'name' | 'mirror' | 'none'
+  /** How `side` was established: from the name, a mirrored file pair (…M), or a hand-checked correction. */
+  sideSource: 'name' | 'mirror' | 'correction' | 'none'
+  /**
+   * Present when scripts/anatomy-corrections.json overrides BodyParts3D's name
+   * and side for this piece. `originalName` is the name as BodyParts3D ships it.
+   */
+  correction?: { originalName: string; reason: string }
   /** GLB file (relative to /anatomy/) containing a node named `id`. */
   meshFile: string
   /** Bounding-box centre of the piece in the assembled body (scene units = metres). */
