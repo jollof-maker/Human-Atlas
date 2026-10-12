@@ -14,6 +14,27 @@ const SYSTEM_ROOT: Partial<Record<SystemId, RegExp>> = {
 }
 
 /**
+ * Categories that name a whole organ or structure while their pieces are parts
+ * of it: a hippocampus is not "a brain", an epiglottis is not "a larynx", a
+ * mitral leaflet is not "a heart valve". These pieces are described as part of
+ * the whole. Categories naming a type (artery, muscle, bone, tooth …) are not
+ * listed: each of their pieces is one of that type.
+ */
+const PART_OF_WHOLE: Record<string, string> = {
+  Brain: 'A brain structure, part of the nervous system',
+  'Spinal cord': 'A structure of the spinal cord',
+  Larynx: 'A laryngeal structure, part of the respiratory system',
+  Eye: 'A structure of the eye',
+  Ear: 'A structure of the ear',
+  // Walls and cavities of atria and ventricles.
+  'Heart chamber': 'A structure of a heart chamber',
+  // Cusps and leaflets of the cardiac valves.
+  'Heart valve': 'A structure of a heart valve',
+  // Interosseous membranes, parts of fibrous joints.
+  Joint: 'A joint structure, part of the skeletal system',
+}
+
+/**
  * Descriptions are composed only from data we actually have: the category and
  * region, the FMA is_a / part_of ancestors shipped with BodyParts3D, piece
  * count, measured size and reported volume. No free-form prose is invented.
@@ -28,12 +49,13 @@ export function describe(s: Structure): string[] {
   const side = s.side === 'midline' || s.pieces.some(isCardiac) ? '' : `, ${s.side} side`
   const category = s.category.toLowerCase()
   // "of the <system>" only when it adds something: "an artery of the arterial
-  // system" or "a heart valve of the heart" just repeats the category.
+  // system" or "a vein of the venous system" just repeats the category.
   const repeats = SYSTEM_ROOT[s.system]?.test(category) ?? false
   const system = repeats ? '' : ` of the ${SYSTEM_BY_ID[s.system].noun}`
+  const lead = PART_OF_WHOLE[s.category] ?? `${article(s.category)} ${category}${system}`
 
   const lines: string[] = []
-  lines.push(`${article(s.category)} ${category}${system}, in the ${region}${side}.`)
+  lines.push(`${lead}, in the ${region}${side}.`)
   if (kind || part) {
     const bits = [kind && `a kind of ${kind}`, part && `part of the ${part}`].filter(Boolean)
     lines.push(`The Foundational Model of Anatomy classifies it as ${bits.join(', and ')}.`)
