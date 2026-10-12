@@ -80,7 +80,7 @@ export const useAtlas = create<AtlasState>()(
     setSide: (side) => {
       const s = get()
       const st = s.selected ? s.data?.structureByKey.get(s.selected) : null
-      const hidden = st && side !== 'both' && st.side !== 'midline' && st.side !== side
+      const hidden = st && !st.pieces.some((p) => passesSideFilter(side, p))
       set({ side, ...(hidden ? { selected: null, isolated: false } : {}) })
     },
     setArms: (arms) => {
@@ -109,6 +109,24 @@ function dropHiddenSelection(s: AtlasState, systems: Record<SystemId, boolean>) 
   return st && !systems[st.system] ? { selected: null, isolated: false } : {}
 }
 
+/**
+ * Side as the Both/Left/Right filter sees it. Heart structures, coronary
+ * arteries and cardiac veins (exactly the Heart collection) count as midline:
+ * their "left"/"right" names the heart's chambers, not a body side. Names and
+ * the stored side are unchanged.
+ */
+export function filterSide(e: { side: string; system: SystemId; collections: CollectionId[] }): string {
+  return e.system === 'heart' || e.collections.includes('heart') ? 'midline' : e.side
+}
+
+export function passesSideFilter(
+  filter: SideFilter,
+  e: { side: string; system: SystemId; collections: CollectionId[] },
+): boolean {
+  const side = filterSide(e)
+  return filter === 'both' || side === 'midline' || side === filter
+}
+
 /** The Hand and Shoulder collections always show the arms down. */
 export function effectiveArms(s: Pick<AtlasState, 'arms' | 'collection'>): ArmsPose {
   return s.collection === 'hand' || s.collection === 'shoulder' ? 'down' : s.arms
@@ -120,7 +138,7 @@ export function inScope(
   e: { id: string; system: SystemId; collections: CollectionId[]; side: string },
 ) {
   if (!s.systems[e.system]) return false
-  if (s.side !== 'both' && e.side !== 'midline' && e.side !== s.side) return false
+  if (!passesSideFilter(s.side, e)) return false
   if (s.collection && !e.collections.includes(s.collection)) return false
   if (effectiveArms(s) === 'hidden' && s.data?.upperLimb.has(e.id)) return false
   return true

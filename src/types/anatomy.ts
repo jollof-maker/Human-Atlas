@@ -37,7 +37,7 @@ export interface ManifestEntry {
    * Present when scripts/anatomy-corrections.json overrides BodyParts3D's name
    * and side for this piece. `originalName` is the name as BodyParts3D ships it.
    */
-  correction?: { originalName: string; reason: string }
+  correction?: { originalName: string; reason: string; note?: string }
   /** GLB file (relative to /anatomy/) containing a node named `id`. */
   meshFile: string
   /** Bounding-box centre of the piece in the assembled body (scene units = metres). */

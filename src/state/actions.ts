@@ -1,5 +1,5 @@
 import type { CollectionId } from '../types/anatomy'
-import { inScope, useAtlas } from './store'
+import { inScope, passesSideFilter, useAtlas } from './store'
 import { runtime } from './runtime'
 
 let layoutTimer: number | undefined
@@ -33,7 +33,7 @@ export function revealAndSelect(key: string) {
   if (!st) return
   const patch: Partial<ReturnType<typeof useAtlas.getState>> = {}
   if (!s.systems[st.system]) patch.systems = { ...s.systems, [st.system]: true }
-  if (s.side !== 'both' && st.side !== 'midline' && st.side !== s.side) patch.side = 'both'
+  if (!st.pieces.some((p) => passesSideFilter(s.side, p))) patch.side = 'both'
   if (s.arms === 'hidden' && st.pieces.some((p) => s.data!.upperLimb.has(p.id))) patch.arms = 'down'
   const scope = { ...s, ...patch }
   if (s.collection && !st.pieces.some((p) => inScope(scope, p))) {

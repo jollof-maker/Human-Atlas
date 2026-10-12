@@ -50,6 +50,12 @@ function Details({ data, s }: { data: AtlasData; s: Structure }) {
       </div>
       <h2 className="info-title">{s.title}</h2>
       <p className="info-desc">{describe(s).join(' ')}</p>
+      {corrected?.note && (
+        <p className="info-caveat" role="note">
+          {ids.length > 1 && <strong>{correctedPiece!.id}: </strong>}
+          {corrected.note}
+        </p>
+      )}
 
       <dl className="meta-rows">
         <div>

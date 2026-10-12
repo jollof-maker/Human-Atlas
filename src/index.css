@@ -843,6 +843,21 @@ input:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
+.info-caveat {
+  margin: -6px 0 14px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border-left: 2px solid #b8893a;
+  background: rgba(184, 137, 58, 0.08);
+  font-size: 11px;
+  line-height: 1.5;
+  color: #5a4a2c;
+}
+
+.info-caveat strong {
+  font-weight: 600;
+}
+
 .corrected-tag {
   margin-left: 6px;
   padding: 1px 5px;

@@ -48,6 +48,8 @@ interface Correction {
   name: string
   side: Side
   comment: string
+  /** Optional caveat shown verbatim in the info panel. */
+  note?: string
 }
 const CORRECTIONS = new Map<string, Correction>(
   (JSON.parse(readFileSync(join(ROOT, 'scripts/anatomy-corrections.json'), 'utf8')).corrections as Correction[]).map(
@@ -193,7 +195,7 @@ for (const [i, f] of files.entries()) {
     rule: cls?.rule ?? -1,
     side: 'midline',
     sideSource: 'none',
-    correction: fix ? { originalName: sourceName, reason: fix.comment } : undefined,
+    correction: fix ? { originalName: sourceName, reason: fix.comment, ...(fix.note ? { note: fix.note } : {}) } : undefined,
   })
   if ((i + 1) % 250 === 0) console.log(`  parsed ${i + 1}/${files.length}`)
 }

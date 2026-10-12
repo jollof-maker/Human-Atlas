@@ -131,7 +131,12 @@ export const RULES: Rule[] = [
   { system: 'skeleton', category: 'Cartilage', ancestor: /^(cartilage organ|costal cartilage)$/i },
 
   // ---- muscles -----------------------------------------------------------------
-  { system: 'muscles', category: 'Tendon', name: /\b(tendon|tendinous arch|aponeurosis|raphe|linea alba|iliotibial tract|retinaculum|fascia)\b/i },
+  // Connective-tissue parts of the muscular system, labelled by what they are.
+  { system: 'muscles', category: 'Retinaculum', name: /\bretinacul(um|a)\b/i },
+  // Iliotibial tract: thickening of the fascia lata. Tendinous arch of levator ani:
+  // thickening of the obturator fascia (despite its name, not a tendon).
+  { system: 'muscles', category: 'Fascia', name: /\b(fascia|iliotibial tract|tendinous arch of levator ani)\b/i },
+  { system: 'muscles', category: 'Tendon', name: /\b(tendon|tendinous arch|aponeurosis|raphe|linea alba)\b/i },
   {
     system: 'muscles',
     category: 'Muscle',

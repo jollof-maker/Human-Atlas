@@ -1,5 +1,5 @@
 {
-  "$comment": "Hand-checked corrections to BodyParts3D 4.0 metadata, applied by scripts/build-anatomy.ts. Each entry overrides the English name and side of one element file; the original name is kept in the manifest (correction.originalName) and shown in the info panel. Only add an entry when the error is unambiguous from the geometry, and explain the evidence in `comment`.",
+  "$comment": "Hand-checked corrections to BodyParts3D 4.0 metadata, applied by scripts/build-anatomy.ts. Each entry overrides the English name and side of one element file; the original name is kept in the manifest (correction.originalName) and shown in the info panel. Only add an entry when the error is unambiguous from the geometry, and explain the evidence in `comment`. An optional `note` is shown verbatim in the info panel.",
   "corrections": [
     {
       "id": "FJ1469",
@@ -17,7 +17,8 @@
       "id": "FJ2190",
       "name": "Left fibular vein",
       "side": "left",
-      "comment": "BodyParts3D names this 'Right fibular vein', but the mesh lies on the left side (centre x = +0.077 m) and has no left-side counterpart; the right fibular vein is already modelled by FJ2194 and FJ2200 (x = -0.058 to -0.079 m). Side corrected only. Caution: the mesh sits at thigh level (centre y = -0.158 m, above the knee), where no fibular vein runs, so its identity as a fibular vein is itself doubtful. The name is kept rather than guessed."
+      "comment": "BodyParts3D names this 'Right fibular vein', but the mesh lies on the left side (centre x = +0.077 m) and has no left-side counterpart; the right fibular vein is already modelled by FJ2194 and FJ2200 (x = -0.058 to -0.079 m). Side corrected only. Caution: the mesh sits at thigh level (centre y = -0.158 m, above the knee), where no fibular vein runs, so its identity as a fibular vein is itself doubtful. The name is kept rather than guessed.",
+      "note": "Identity uncertain: this piece sits at thigh level, where no fibular vein runs. The BodyParts3D label may be wrong."
     }
   ]
 }

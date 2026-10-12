@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { COLLECTIONS } from '../data/systems'
 import type { CollectionId } from '../types/anatomy'
 import { chooseCollection } from '../state/actions'
-import { useAtlas, type SideFilter } from '../state/store'
+import { passesSideFilter, useAtlas, type SideFilter } from '../state/store'
 import { Segmented } from './controls'
 import { ChevronIcon } from './icons'
 
@@ -20,7 +20,7 @@ export function CollectionsPanel() {
     const out = Object.fromEntries(COLLECTIONS.map((c) => [c.id, 0])) as Record<CollectionId, number>
     for (const e of data.entries) {
       if (!systems[e.system]) continue
-      if (side !== 'both' && e.side !== 'midline' && e.side !== side) continue
+      if (!passesSideFilter(side, e)) continue
       for (const c of e.collections) out[c]++
     }
     return out
