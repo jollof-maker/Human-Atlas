@@ -1,6 +1,7 @@
 import type { AtlasData, Structure } from './atlasData'
 import { ATTACHMENTS } from './attachments'
 import { SYSTEM_BY_ID } from './systems'
+import { isCardiac } from './cardiac'
 
 /**
  * Descriptions are composed only from data we actually have: the category and
@@ -13,7 +14,8 @@ export function describe(s: Structure): string[] {
   const kind = first.isA.find((n) => n.toLowerCase() !== plain && n.toLowerCase() !== s.name.toLowerCase())
   const part = first.partOf.find((n) => n.toLowerCase() !== plain)
   const region = s.region.toLowerCase()
-  const side = s.side === 'midline' ? '' : `, ${s.side} side`
+  // Cardiac "left/right" names a chamber, not a body side: no side phrase for those.
+  const side = s.side === 'midline' || s.pieces.some(isCardiac) ? '' : `, ${s.side} side`
   const system = SYSTEM_BY_ID[s.system].noun
 
   const lines: string[] = []

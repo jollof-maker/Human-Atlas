@@ -136,7 +136,10 @@ export const RULES: Rule[] = [
   // Iliotibial tract: thickening of the fascia lata. Tendinous arch of levator ani:
   // thickening of the obturator fascia (despite its name, not a tendon).
   { system: 'muscles', category: 'Fascia', name: /\b(fascia|iliotibial tract|tendinous arch of levator ani)\b/i },
-  { system: 'muscles', category: 'Tendon', name: /\b(tendon|tendinous arch|aponeurosis|raphe|linea alba)\b/i },
+  // Linea alba: the midline aponeurosis of the abdominal wall.
+  { system: 'muscles', category: 'Aponeurosis', name: /\b(aponeurosis|linea alba)\b/i },
+  { system: 'muscles', category: 'Raphe', name: /\braphe\b/i },
+  { system: 'muscles', category: 'Tendon', name: /\b(tendon|tendinous arch)\b/i },
   {
     system: 'muscles',
     category: 'Muscle',

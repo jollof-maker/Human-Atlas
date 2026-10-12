@@ -3,6 +3,7 @@ import { subscribeWithSelector } from 'zustand/middleware'
 import type { CollectionId, SystemId } from '../types/anatomy'
 import type { AtlasData } from '../data/atlasData'
 import { SYSTEM_IDS } from '../data/systems'
+import { isCardiac } from '../data/cardiac'
 
 export type SideFilter = 'both' | 'left' | 'right'
 export type CameraTool = 'orbit' | 'pan'
@@ -110,13 +111,11 @@ function dropHiddenSelection(s: AtlasState, systems: Record<SystemId, boolean>) 
 }
 
 /**
- * Side as the Both/Left/Right filter sees it. Heart structures, coronary
- * arteries and cardiac veins (exactly the Heart collection) count as midline:
- * their "left"/"right" names the heart's chambers, not a body side. Names and
- * the stored side are unchanged.
+ * Side as the Both/Left/Right filter sees it: cardiac structures (see
+ * isCardiac) count as midline. Names and the stored side are unchanged.
  */
 export function filterSide(e: { side: string; system: SystemId; collections: CollectionId[] }): string {
-  return e.system === 'heart' || e.collections.includes('heart') ? 'midline' : e.side
+  return isCardiac(e) ? 'midline' : e.side
 }
 
 export function passesSideFilter(

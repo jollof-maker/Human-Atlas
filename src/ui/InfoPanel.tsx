@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import type { AtlasData, Structure } from '../data/atlasData'
 import { ATTACHMENT_SOURCE } from '../data/attachments'
 import { describe, relationsFor } from '../data/knowledge'
+import { isCardiac } from '../data/cardiac'
 import { SYSTEM_BY_ID } from '../data/systems'
 import { revealAndSelect } from '../state/actions'
 import { useAtlas } from '../state/store'
@@ -85,7 +86,7 @@ function Details({ data, s }: { data: AtlasData; s: Structure }) {
         </div>
         <div>
           <dt>Side</dt>
-          <dd>{capitalize(s.side)}</dd>
+          <dd>{s.pieces.some(isCardiac) ? 'Midline (heart)' : capitalize(s.side)}</dd>
         </div>
       </dl>
 
