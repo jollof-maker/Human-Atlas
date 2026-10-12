@@ -1,7 +1,17 @@
+import type { SystemId } from '../types/anatomy'
 import type { AtlasData, Structure } from './atlasData'
 import { ATTACHMENTS } from './attachments'
 import { SYSTEM_BY_ID } from './systems'
 import { isCardiac } from './cardiac'
+
+/** Root word of each system's noun; a category sharing it makes "of the <system>" redundant. */
+const SYSTEM_ROOT: Partial<Record<SystemId, RegExp>> = {
+  heart: /\bheart\b/,
+  arteries: /\barter/,
+  veins: /\bvein/,
+  muscles: /\bmuscle/,
+  nervous: /\bnerve/,
+}
 
 /**
  * Descriptions are composed only from data we actually have: the category and
@@ -16,10 +26,14 @@ export function describe(s: Structure): string[] {
   const region = s.region.toLowerCase()
   // Cardiac "left/right" names a chamber, not a body side: no side phrase for those.
   const side = s.side === 'midline' || s.pieces.some(isCardiac) ? '' : `, ${s.side} side`
-  const system = SYSTEM_BY_ID[s.system].noun
+  const category = s.category.toLowerCase()
+  // "of the <system>" only when it adds something: "an artery of the arterial
+  // system" or "a heart valve of the heart" just repeats the category.
+  const repeats = SYSTEM_ROOT[s.system]?.test(category) ?? false
+  const system = repeats ? '' : ` of the ${SYSTEM_BY_ID[s.system].noun}`
 
   const lines: string[] = []
-  lines.push(`${article(s.category)} ${s.category.toLowerCase()} of the ${system}, in the ${region}${side}.`)
+  lines.push(`${article(s.category)} ${category}${system}, in the ${region}${side}.`)
   if (kind || part) {
     const bits = [kind && `a kind of ${kind}`, part && `part of the ${part}`].filter(Boolean)
     lines.push(`The Foundational Model of Anatomy classifies it as ${bits.join(', and ')}.`)
