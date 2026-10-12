@@ -1,0 +1,1783 @@
+[
+  {
+    "id": "FJ1252",
+    "name": "Gingiva of upper jaw",
+    "concept": "FMA59763",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "gingiva",
+      "upper jaw",
+      "maxillary part of mouth",
+      "mouth",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ1253",
+    "name": "Gingiva of lower jaw",
+    "concept": "FMA59764",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "gingiva",
+      "mouth",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ1858",
+    "name": "Hepatovenous segment IX",
+    "concept": "FMA15747",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "hepatovenous subsector"
+    ]
+  },
+  {
+    "id": "FJ1883",
+    "name": "Caudate lobe tributary of left hepatic biliary tree",
+    "concept": "FMA71889",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver",
+      "liver"
+    ]
+  },
+  {
+    "id": "FJ1895",
+    "name": "Pancreas",
+    "concept": "FMA7198",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "lobular organ",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ1896",
+    "name": "Pancreatic duct",
+    "concept": "FMA10419",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "duct",
+      "pancreatic duct tree",
+      "pancreas",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2409",
+    "name": "Hepatovenous segment VII",
+    "concept": "FMA15745",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of posterior sector of right liver (in-vivo)",
+      "hepatovenous subsector",
+      "posterior sector of right liver",
+      "right hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2561",
+    "name": "Spleen",
+    "concept": "FMA7196",
+    "reason": "Out of scope: Endocrine / lymphoid",
+    "ancestors": [
+      "corticomedullary organ"
+    ]
+  },
+  {
+    "id": "FJ2563",
+    "name": "Esophagus",
+    "concept": "FMA7131",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2564",
+    "name": "Stomach",
+    "concept": "FMA7148",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2565",
+    "name": "Appendix",
+    "concept": "FMA14542",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2566",
+    "name": "Ascending colon",
+    "concept": "FMA14545",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segment of colon",
+      "segment of large intestine",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2567",
+    "name": "Descending colon",
+    "concept": "FMA14547",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segment of colon",
+      "segment of large intestine",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2568",
+    "name": "Taenia libera",
+    "concept": "FMA15044",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "taenia coli",
+      "subdivision of muscle layer",
+      "muscle layer of large intestine",
+      "wall of large intestine",
+      "large intestine",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2569",
+    "name": "Taenia mesocolica",
+    "concept": "FMA15042",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "taenia coli",
+      "subdivision of muscle layer",
+      "muscle layer of large intestine",
+      "wall of large intestine",
+      "large intestine",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2570",
+    "name": "Taenia omentalis",
+    "concept": "FMA15043",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "taenia coli",
+      "subdivision of muscle layer",
+      "muscle layer of large intestine",
+      "wall of large intestine",
+      "large intestine",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2571",
+    "name": "Rectum",
+    "concept": "FMA14544",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segment of large intestine",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2572",
+    "name": "Transverse colon",
+    "concept": "FMA14546",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segment of colon",
+      "segment of large intestine",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2573",
+    "name": "Duodenum",
+    "concept": "FMA7206",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2574",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2575",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2576",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2577",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2578",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2579",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2580",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2581",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2582",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2583",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2584",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2585",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2586",
+    "name": "Middle part of ileum",
+    "concept": "FMA14965",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2587",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2588",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2589",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2590",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2591",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2592",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2593",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2594",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2595",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2596",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2597",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2598",
+    "name": "Distal part of ileum",
+    "concept": "FMA14966",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2599",
+    "name": "Ileocecal junction",
+    "concept": "FMA11338",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of continuity",
+      "anatomical junction",
+      "wall of distal part of ileum",
+      "distal part of ileum",
+      "ileum",
+      "small intestine"
+    ]
+  },
+  {
+    "id": "FJ2600",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2601",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2602",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2603",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2604",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2605",
+    "name": "Proximal part of ileum",
+    "concept": "FMA14964",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of ileum",
+      "zone of small intestine",
+      "ileum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2606",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2607",
+    "name": "Middle part of jejunum",
+    "concept": "FMA16982",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2608",
+    "name": "Middle part of jejunum",
+    "concept": "FMA16982",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2609",
+    "name": "Middle part of jejunum",
+    "concept": "FMA16982",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2610",
+    "name": "Middle part of jejunum",
+    "concept": "FMA16982",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2611",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2612",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2613",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2614",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2615",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2616",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2617",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2618",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2619",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2620",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2621",
+    "name": "Distal part of jejunum",
+    "concept": "FMA16983",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2622",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2623",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2624",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2625",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2626",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2627",
+    "name": "Proximal part of jejunum",
+    "concept": "FMA16981",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2628",
+    "name": "Middle part of jejunum",
+    "concept": "FMA16982",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "zone of jejunum",
+      "zone of small intestine",
+      "jejunum",
+      "small intestine",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2629",
+    "name": "Parenchyma of pancreas",
+    "concept": "FMA63120",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "parenchyma",
+      "pancreas",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2630",
+    "name": "Pancreatic duct tree",
+    "concept": "FMA63103",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "pancreas",
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2761",
+    "name": "Tongue",
+    "concept": "FMA54640",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "heterogeneous cluster",
+      "mouth",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2765",
+    "name": "Left sublingual gland",
+    "concept": "FMA59805",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "sublingual gland",
+      "major salivary gland",
+      "salivary gland",
+      "lobular organ"
+    ]
+  },
+  {
+    "id": "FJ2766",
+    "name": "Left submandibular gland",
+    "concept": "FMA59803",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "submandibular gland",
+      "major salivary gland",
+      "salivary gland",
+      "lobular organ",
+      "mandibular part of mouth",
+      "mouth"
+    ]
+  },
+  {
+    "id": "FJ2767",
+    "name": "Right sublingual gland",
+    "concept": "FMA59804",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "sublingual gland",
+      "major salivary gland",
+      "salivary gland",
+      "lobular organ"
+    ]
+  },
+  {
+    "id": "FJ2768",
+    "name": "Right submandibular gland",
+    "concept": "FMA59802",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "submandibular gland",
+      "major salivary gland",
+      "salivary gland",
+      "lobular organ",
+      "mandibular part of mouth",
+      "mouth"
+    ]
+  },
+  {
+    "id": "FJ2810",
+    "name": "Skin",
+    "concept": "FMA7163",
+    "reason": "Out of scope: Integument",
+    "ancestors": [
+      "integument",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2812",
+    "name": "Eyebrow",
+    "concept": "FMA54237",
+    "reason": "Out of scope: Integument",
+    "ancestors": [
+      "set of facial hairs",
+      "set of hairs"
+    ]
+  },
+  {
+    "id": "FJ2813",
+    "name": "Hair of head",
+    "concept": "FMA54241",
+    "reason": "Out of scope: Integument",
+    "ancestors": [
+      "hair",
+      "skin appendage",
+      "subdivision of epidermis",
+      "subdivision of epithelium",
+      "cardinal tissue part"
+    ]
+  },
+  {
+    "id": "FJ2814",
+    "name": "Lip",
+    "concept": "FMA59816",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "subdivision of mouth",
+      "subdivision of face",
+      "subdivision of head",
+      "subdivision of cardinal body part"
+    ]
+  },
+  {
+    "id": "FJ2815",
+    "name": "Pubic hair",
+    "concept": "FMA54319",
+    "reason": "Out of scope: Integument",
+    "ancestors": [
+      "hair of trunk",
+      "hair",
+      "skin appendage",
+      "subdivision of epidermis",
+      "subdivision of epithelium",
+      "cardinal tissue part"
+    ]
+  },
+  {
+    "id": "FJ2816",
+    "name": "Caudate lobe of liver",
+    "concept": "FMA13365",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segment of liver",
+      "lobular segment",
+      "lobular organ component",
+      "left lobe of liver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2817",
+    "name": "Gallbladder",
+    "concept": "FMA7202",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "gastrointestinal tract",
+      "alimentary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ2818",
+    "name": "Hepatovenous segment II",
+    "concept": "FMA15739",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "hepatovenous subsector",
+      "posterior sector of left liver",
+      "left hemiliver",
+      "liver",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ2819",
+    "name": "Hepatovenous segment III",
+    "concept": "FMA15741",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of anterior sector of left liver (in-vivo)",
+      "hepatovenous subsector",
+      "anterior sector of left liver",
+      "left hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2820",
+    "name": "Hepatovenous segment IV",
+    "concept": "FMA15742",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of anterior sector of left liver (in-vivo)",
+      "hepatovenous subsector",
+      "anterior sector of left liver",
+      "left hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2821",
+    "name": "Hepatovenous segment V",
+    "concept": "FMA15743",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of anterior sector of right liver (in-vivo)",
+      "hepatovenous subsector",
+      "anterior sector of right liver",
+      "right hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2822",
+    "name": "Hepatovenous segment VI",
+    "concept": "FMA15744",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of posterior sector of right liver (in-vivo)",
+      "hepatovenous subsector",
+      "posterior sector of right liver",
+      "right hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2823",
+    "name": "Hepatovenous segment VIII",
+    "concept": "FMA15746",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of anterior sector of right liver (in-vivo)",
+      "hepatovenous subsector",
+      "anterior sector of right liver",
+      "right hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ2824",
+    "name": "Hepatovenous segment VIII",
+    "concept": "FMA15746",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "region of anterior sector of right liver (in-vivo)",
+      "hepatovenous subsector",
+      "anterior sector of right liver",
+      "right hemiliver",
+      "liver",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ3071",
+    "name": "Anterior superior tributary of right hepatic biliary tree",
+    "concept": "FMA71867",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of right hepatic biliary tree",
+      "segment of right hepatic biliary tree",
+      "segment of biliary tree",
+      "anterior tributary of right hepatic biliary tree",
+      "right hepatic biliary tree",
+      "right lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3072",
+    "name": "Anterior inferior tributary of right hepatic biliary tree",
+    "concept": "FMA71868",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of right hepatic biliary tree",
+      "segment of right hepatic biliary tree",
+      "segment of biliary tree",
+      "anterior tributary of right hepatic biliary tree",
+      "right hepatic biliary tree",
+      "right lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3079",
+    "name": "Common hepatic duct",
+    "concept": "FMA14668",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "extrahepatic bile duct",
+      "bile duct",
+      "duct",
+      "hepatic biliary tree",
+      "biliary tree",
+      "gastrointestinal tract"
+    ]
+  },
+  {
+    "id": "FJ3080",
+    "name": "Cystic duct",
+    "concept": "FMA14539",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "extrahepatic bile duct",
+      "bile duct",
+      "duct",
+      "biliary tree",
+      "gastrointestinal tract",
+      "alimentary system"
+    ]
+  },
+  {
+    "id": "FJ3088",
+    "name": "Lateral superior tributary of left hepatic biliary tree",
+    "concept": "FMA71887",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "lateral tributary of left hepatic biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3089",
+    "name": "Lateral inferior tributary of left hepatic biliary tree",
+    "concept": "FMA71888",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "lateral tributary of left hepatic biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3090",
+    "name": "Lateral superior tributary of left hepatic biliary tree",
+    "concept": "FMA71887",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "lateral tributary of left hepatic biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3094",
+    "name": "Left duct of caudate lobe of liver",
+    "concept": "FMA76903",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segment of biliary tree"
+    ]
+  },
+  {
+    "id": "FJ3096",
+    "name": "Left hepatic duct",
+    "concept": "FMA14670",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "extrahepatic bile duct",
+      "bile duct",
+      "duct",
+      "left hepatic biliary tree",
+      "left lobe of liver",
+      "liver"
+    ]
+  },
+  {
+    "id": "FJ3103",
+    "name": "Medial inferior tributary of left hepatic biliary tree",
+    "concept": "FMA71886",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "medial tributary of left hepatic biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3104",
+    "name": "Medial superior tributary of left hepatic biliary tree",
+    "concept": "FMA71885",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "medial tributary of left hepatic biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3105",
+    "name": "Medial superior tributary of left hepatic biliary tree",
+    "concept": "FMA71885",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of left hepatic biliary tree",
+      "segment of left hepatic biliary tree",
+      "segment of biliary tree",
+      "medial tributary of left hepatic biliary tree",
+      "left hepatic biliary tree",
+      "left lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3108",
+    "name": "Posterior inferior tributary of right hepatic biliary tree",
+    "concept": "FMA71870",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of right hepatic biliary tree",
+      "segment of right hepatic biliary tree",
+      "segment of biliary tree",
+      "posterior tributary of right hepatic biliary tree",
+      "right hepatic biliary tree",
+      "right lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3109",
+    "name": "Posterior superior tributary of right hepatic biliary tree",
+    "concept": "FMA71869",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of right hepatic biliary tree",
+      "segment of right hepatic biliary tree",
+      "segment of biliary tree",
+      "posterior tributary of right hepatic biliary tree",
+      "right hepatic biliary tree",
+      "right lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3110",
+    "name": "Posterior superior tributary of right hepatic biliary tree",
+    "concept": "FMA71869",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "segmental tributary of right hepatic biliary tree",
+      "segment of right hepatic biliary tree",
+      "segment of biliary tree",
+      "posterior tributary of right hepatic biliary tree",
+      "right hepatic biliary tree",
+      "right lobe of liver"
+    ]
+  },
+  {
+    "id": "FJ3123",
+    "name": "Right hepatic duct",
+    "concept": "FMA14669",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "extrahepatic bile duct",
+      "bile duct",
+      "duct",
+      "right hepatic biliary tree",
+      "right lobe of liver",
+      "liver"
+    ]
+  },
+  {
+    "id": "FJ3129",
+    "name": "Left adrenal gland",
+    "concept": "FMA15630",
+    "reason": "Out of scope: Endocrine / lymphoid",
+    "ancestors": [
+      "adrenal gland",
+      "corticomedullary organ",
+      "endocrine system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3130",
+    "name": "Right adrenal gland",
+    "concept": "FMA15629",
+    "reason": "Out of scope: Endocrine / lymphoid",
+    "ancestors": [
+      "adrenal gland",
+      "corticomedullary organ",
+      "endocrine system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3132",
+    "name": "Corpus cavernosum of penis",
+    "concept": "FMA19618",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "zone of cavernous organ"
+    ]
+  },
+  {
+    "id": "FJ3133",
+    "name": "Corpus spongiosum of penis",
+    "concept": "FMA19617",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "cavernous organ"
+    ]
+  },
+  {
+    "id": "FJ3134",
+    "name": "Glans penis",
+    "concept": "FMA18247",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "zone of corpus spongiosum of penis",
+      "zone of cavernous organ"
+    ]
+  },
+  {
+    "id": "FJ3135",
+    "name": "Left deferent duct",
+    "concept": "FMA19236",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "deferent duct",
+      "duct"
+    ]
+  },
+  {
+    "id": "FJ3136",
+    "name": "Left epididymis",
+    "concept": "FMA18257",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "epididymis",
+      "duct"
+    ]
+  },
+  {
+    "id": "FJ3137",
+    "name": "Left seminal vesicle",
+    "concept": "FMA19388",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "seminal vesicle",
+      "organ component gland"
+    ]
+  },
+  {
+    "id": "FJ3138",
+    "name": "Left testis",
+    "concept": "FMA7212",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "testis",
+      "lobular organ"
+    ]
+  },
+  {
+    "id": "FJ3139",
+    "name": "Prostate",
+    "concept": "FMA9600",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "lobular organ",
+      "genital system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3140",
+    "name": "Right deferent duct",
+    "concept": "FMA19235",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "deferent duct",
+      "duct"
+    ]
+  },
+  {
+    "id": "FJ3141",
+    "name": "Right epididymis",
+    "concept": "FMA18256",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "epididymis",
+      "duct"
+    ]
+  },
+  {
+    "id": "FJ3142",
+    "name": "Right testis",
+    "concept": "FMA7211",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "testis",
+      "lobular organ"
+    ]
+  },
+  {
+    "id": "FJ3143",
+    "name": "Right seminal vesicle",
+    "concept": "FMA19387",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "seminal vesicle",
+      "organ component gland"
+    ]
+  },
+  {
+    "id": "FJ3144",
+    "name": "Left ureter",
+    "concept": "FMA15572",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "ureter",
+      "left upper urinary tract",
+      "urinary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3145",
+    "name": "Left kidney",
+    "concept": "FMA7205",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "kidney",
+      "corticomedullary organ",
+      "left upper urinary tract",
+      "urinary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3146",
+    "name": "Right ureter",
+    "concept": "FMA15571",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "ureter",
+      "right upper urinary tract",
+      "urinary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3147",
+    "name": "Right kidney",
+    "concept": "FMA7204",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "kidney",
+      "corticomedullary organ",
+      "right upper urinary tract",
+      "urinary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3148",
+    "name": "Urethra",
+    "concept": "FMA19667",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "lower urinary tract",
+      "urinary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3149",
+    "name": "Urinary bladder",
+    "concept": "FMA15900",
+    "reason": "Out of scope: Urogenital",
+    "ancestors": [
+      "lower urinary tract",
+      "urinary system",
+      "human body"
+    ]
+  },
+  {
+    "id": "FJ3150",
+    "name": "Left lobe of thymus",
+    "concept": "FMA71195",
+    "reason": "Out of scope: Endocrine / lymphoid",
+    "ancestors": [
+      "lobe of thymus",
+      "anatomical lobe",
+      "lobular organ component",
+      "thymus",
+      "content of anterior mediastinum",
+      "content of inferior mediastinum"
+    ]
+  },
+  {
+    "id": "FJ3151",
+    "name": "Right lobe of thymus",
+    "concept": "FMA71194",
+    "reason": "Out of scope: Endocrine / lymphoid",
+    "ancestors": [
+      "lobe of thymus",
+      "anatomical lobe",
+      "lobular organ component",
+      "thymus",
+      "content of anterior mediastinum",
+      "content of inferior mediastinum"
+    ]
+  },
+  {
+    "id": "FJ3396",
+    "name": "Mesentery of small intestine",
+    "concept": "FMA14643",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "peritoneal mesentery",
+      "region of visceral peritoneum",
+      "region of peritoneum",
+      "region of serous membrane",
+      "visceral peritoneum",
+      "peritoneum"
+    ]
+  },
+  {
+    "id": "FJ3397",
+    "name": "Mesoappendix",
+    "concept": "FMA16549",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "mesentery of large intestine",
+      "peritoneal mesentery",
+      "region of visceral peritoneum",
+      "region of peritoneum",
+      "region of serous membrane",
+      "visceral peritoneum"
+    ]
+  },
+  {
+    "id": "FJ3398",
+    "name": "Transverse mesocolon",
+    "concept": "FMA14647",
+    "reason": "Out of scope: Digestive",
+    "ancestors": [
+      "mesentery of large intestine",
+      "peritoneal mesentery",
+      "region of visceral peritoneum",
+      "region of peritoneum",
+      "region of serous membrane",
+      "visceral peritoneum"
+    ]
+  }
+]

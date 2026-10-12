@@ -1,0 +1,32 @@
+[
+  {
+    "id": "FJ2013",
+    "name": "Celiac artery",
+    "duplicateOf": "FJ1846"
+  },
+  {
+    "id": "FJ2386",
+    "name": "Caudate lobe branch of right hepatic artery",
+    "duplicateOf": "FJ1916"
+  },
+  {
+    "id": "FJ2394",
+    "name": "Right lobe branch of right hepatic artery",
+    "duplicateOf": "FJ1924"
+  },
+  {
+    "id": "FJ2548",
+    "name": "External anal sphincter",
+    "duplicateOf": "FJ1450"
+  },
+  {
+    "id": "FJ2769",
+    "name": "Cricoid cartilage",
+    "duplicateOf": "FJ2440"
+  },
+  {
+    "id": "FJ3201",
+    "name": "Hyoid bone",
+    "duplicateOf": "FJ2772"
+  }
+]
