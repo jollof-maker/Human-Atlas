@@ -20,8 +20,10 @@ import { acceleratedRaycast, computeBoundsTree } from 'three-mesh-bvh'
 import type { AtlasData } from '../data/atlasData'
 import { SYSTEMS, SYSTEM_BY_ID } from '../data/systems'
 import type { ManifestEntry, SystemId } from '../types/anatomy'
-import { inScope, useAtlas, type AtlasState } from '../state/store'
+import type { LimbMembership, LimbSide } from '../data/upperLimb'
+import { effectiveArms, inScope, useAtlas, type AtlasState } from '../state/store'
 import {
+  ARM_DURATION,
   activeLayout,
   clamp01,
   easeInOutCubic,
@@ -31,6 +33,7 @@ import {
 } from '../state/runtime'
 import { BACKGROUND, INK } from './theme'
 import { assetUrl } from './assets'
+import { armPoseMatrix, humeralHeadCentre } from './armPose'
 
 /** Max per-piece stagger, as a fraction of the explode range. */
 const MAX_DELAY = 0.22
@@ -39,6 +42,8 @@ const SYSTEM_STAGGER = 0.045
 const DIM_AMOUNT = 0.52
 const JOIN_DURATION = 1.2
 const XRAY_OPACITY = 0.34
+/** Opacity of shoulder-crossing pieces while the arms are raised. */
+const CROSSING_OPACITY = 0.16
 const BG = new Color(BACKGROUND)
 const noRaycast = () => {}
 
@@ -75,6 +80,10 @@ interface Piece {
   pickable: boolean
   /** See-through overlay drawn while selected, so occluded structures stay legible. */
   xray: Mesh<BufferGeometry, MeshBasicMaterial> | null
+  /** Upper-limb membership (moves with the arm pose), or null for the trunk. */
+  limb: LimbMembership | null
+  /** Arm pose currently baked into this piece's matrix (0 down … 1 raised). */
+  poseK: number
 }
 
 export type GeometrySource = (entry: ManifestEntry) => BufferGeometry | null
@@ -219,6 +228,8 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
         selTo: 0,
         pickable: false,
         xray: null,
+        limb: data.upperLimb.get(entry.id) ?? null,
+        poseK: 0,
       }
       pieces.push(piece)
       byMesh.set(mesh, piece)
@@ -231,7 +242,20 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
   // ---------------------------------------------------------------- state --
   useEffect(() => {
     const explode = runtime.explodeTween
+    const arm = runtime.armTween
     let first = true
+    let lastArms: string | null = null
+
+    // Humeral-head centres: the pivots of the raised pose.
+    for (const side of ['left', 'right'] as const) {
+      const humerus = byKey.get(data.structureByName.get(`${side} humerus`)?.key ?? '')
+      runtime.armPivots[side] = humerus ? humeralHeadCentre(humerus.map((p) => p.mesh.geometry), side) : null
+    }
+    const pose = new Matrix4()
+    const posed = (p: Piece, k: number, box: Box3) => {
+      const pivot = p.limb && runtime.armPivots[p.limb.side]
+      return pivot && k > 0 ? box.applyMatrix4(armPoseMatrix(p.limb!.side, pivot, k, pose)) : box
+    }
 
     const apply = (s: AtlasState, prev?: AtlasState) => {
       const now = performance.now() / 1000
@@ -239,11 +263,20 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
       const top = layout.center[1] + layout.height / 2
       const changedSystems: SystemId[] = []
 
+      const arms = effectiveArms(s)
       const targets = pieces.map((p) => {
         const visible =
           inScope(s, p.entry) && !(s.isolated && s.selected !== null && p.key !== s.selected)
-        return visible ? 1 : 0
+        if (!visible) return 0
+        // Raised arms tear the shoulder-crossing pieces; fade them so the distortion reads as such.
+        // On the sheet the pose is unwound, so they return to full opacity there.
+        const torn = arms === 'raised' && s.explode < 0.5 && p.limb?.crossing && p.key !== s.selected
+        return torn ? CROSSING_OPACITY : 1
       })
+      // A hovered structure that just went out of view must not keep its tooltip.
+      if (s.hovered && byKey.get(s.hovered)?.every((p) => targets[pieces.indexOf(p)] === 0)) {
+        queueMicrotask(() => useAtlas.getState().hover(null))
+      }
       pieces.forEach((p, i) => {
         if (!first && p.opTo !== targets[i] && !changedSystems.includes(p.entry.system)) {
           changedSystems.push(p.entry.system)
@@ -279,6 +312,12 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
         explode.start = now
         explode.dur = explodeDuration(s.explode - runtime.explodeProgress, s.scrubbing)
       }
+      if (arms !== lastArms) {
+        const target = arms === 'raised' ? 1 : 0
+        const current = arm.from + (arm.to - arm.from) * clamp01((now - arm.start) / arm.dur)
+        Object.assign(arm, { from: first ? target : current, to: target, start: now, dur: ARM_DURATION })
+        lastArms = arms
+      }
       first = false
     }
 
@@ -290,15 +329,26 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
       const group = byKey.get(key)
       if (!group) return null
       const box = new Box3()
-      const target = useAtlas.getState().explode
+      const st = useAtlas.getState()
+      const target = st.explode
+      const armK = effectiveArms(st) === 'raised' ? 1 : 0
       const tmp = new Box3()
       const offset = new Vector3()
       for (const p of group) {
         // Bounds at the piece's destination, so focusing during a transition aims at where it lands.
         const e = easeInOutCubic(clamp01((target - p.delay) / (1 - MAX_DELAY)))
         offset.subVectors(p.sheetTarget, p.assembled).multiplyScalar(e)
-        box.union(tmp.copy(p.mesh.geometry.boundingBox!).translate(offset))
+        box.union(posed(p, armK * (1 - e), tmp.copy(p.mesh.geometry.boundingBox!)).translate(offset))
       }
+      return box
+    }
+
+    const { min, max } = data.manifest.bounds
+    runtime.bodyBox = (k) => {
+      const box = new Box3(new Vector3(...min), new Vector3(...max))
+      if (k <= 0) return box
+      const tmp = new Box3()
+      for (const p of pieces) if (p.limb) box.union(posed(p, k, tmp.copy(p.mesh.geometry.boundingBox!)))
       return box
     }
 
@@ -320,6 +370,7 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
       cancelled = true
       unsub()
       runtime.structureBox = null
+      runtime.bodyBox = null
     }
   }, [data, pieces, byKey])
 
@@ -340,6 +391,8 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
     const ex = runtime.explodeTween
     runtime.explodeProgress = ex.from + (ex.to - ex.from) * clamp01((now - ex.start) / ex.dur)
     const T = runtime.explodeProgress
+    const at = runtime.armTween
+    const armK = easeInOutCubic(at.from + (at.to - at.from) * clamp01((now - at.start) / at.dur))
     const k = 1 - Math.exp(-Math.min(dt, 0.05) * 6)
     const kc = 1 - Math.exp(-Math.min(dt, 0.05) * 14)
 
@@ -366,10 +419,24 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
       }
       p.join = easeInOutCubic(p.joinRaw)
       const e = easeInOutCubic(clamp01((T - p.delay) / (1 - MAX_DELAY))) * p.join
-      if (moved || e !== p.eased) {
+      // Limb pieces carry the arm pose, unwound as they move onto the sheet so
+      // they lie there in the same orientation as their slot was measured.
+      const poseK = p.limb ? armK * (1 - e) : 0
+      if (moved || e !== p.eased || poseK !== p.poseK) {
         p.eased = e
+        p.poseK = poseK
         m.position.subVectors(p.sheet, p.assembled).multiplyScalar(e)
-        m.updateMatrix()
+        const pivot = p.limb && runtime.armPivots[p.limb.side]
+        if (pivot && poseK > 1e-5) {
+          armPoseMatrix(p.limb!.side as LimbSide, pivot, poseK, m.matrix)
+          const el = m.matrix.elements
+          el[12] += m.position.x
+          el[13] += m.position.y
+          el[14] += m.position.z
+          m.matrixWorldNeedsUpdate = true
+        } else {
+          m.updateMatrix()
+        }
       }
 
       // --- opacity --------------------------------------------------------
@@ -387,7 +454,8 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
           m.visible = p.op > 0.004
         }
       }
-      const pickable = p.opTo > 0.5 && p.op > 0.3
+      // Faded shoulder-crossing pieces stay pickable; see pieceOf for how they yield to opaque ones.
+      const pickable = p.opTo > 0.1 && p.op > 0.08
       if (pickable !== p.pickable) {
         p.pickable = pickable
         m.raycast = pickable ? acceleratedRaycast : noRaycast
@@ -421,7 +489,14 @@ export function PiecesModel({ data, source }: { data: AtlasData; source: Geometr
   })
 
   // ---------------------------------------------------------------- events --
-  const pieceOf = (e: ThreeEvent<PointerEvent | MouseEvent>) => byMesh.get(e.object)
+  /** First opaque piece along the ray; a faded piece only when nothing opaque is behind it. */
+  const pieceOf = (e: ThreeEvent<PointerEvent | MouseEvent>) => {
+    for (const hit of e.intersections) {
+      const p = byMesh.get(hit.object)
+      if (p && p.opTo >= 0.5) return p
+    }
+    return byMesh.get(e.object)
+  }
 
   const onPointerMove = (e: ThreeEvent<PointerEvent>) => {
     e.stopPropagation()

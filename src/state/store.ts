@@ -6,6 +6,7 @@ import { SYSTEM_IDS } from '../data/systems'
 
 export type SideFilter = 'both' | 'left' | 'right'
 export type CameraTool = 'orbit' | 'pan'
+export type ArmsPose = 'down' | 'raised' | 'hidden'
 
 /**
  * UI-level state only. Nothing here changes per frame: per-frame values
@@ -19,6 +20,8 @@ export interface AtlasState {
   systems: Record<SystemId, boolean>
   collection: CollectionId | null
   side: SideFilter
+  /** Upper-limb pose chosen by the user (see effectiveArms for what is shown). */
+  arms: ArmsPose
   hovered: string | null
   selected: string | null
   isolated: boolean
@@ -35,6 +38,7 @@ export interface AtlasState {
   setSystems: (ids: SystemId[]) => void
   setCollection: (c: CollectionId | null) => void
   setSide: (s: SideFilter) => void
+  setArms: (a: ArmsPose) => void
   hover: (key: string | null) => void
   select: (key: string | null) => void
   setIsolated: (v: boolean) => void
@@ -53,6 +57,7 @@ export const useAtlas = create<AtlasState>()(
     systems: allOn(),
     collection: null,
     side: 'both',
+    arms: 'down',
     hovered: null,
     selected: null,
     isolated: false,
@@ -78,6 +83,13 @@ export const useAtlas = create<AtlasState>()(
       const hidden = st && side !== 'both' && st.side !== 'midline' && st.side !== side
       set({ side, ...(hidden ? { selected: null, isolated: false } : {}) })
     },
+    setArms: (arms) => {
+      const s = get()
+      const st = s.selected ? s.data?.structureByKey.get(s.selected) : null
+      const hidden =
+        st && effectiveArms({ ...s, arms }) === 'hidden' && st.pieces.every((p) => s.data!.upperLimb.has(p.id))
+      set({ arms, ...(hidden ? { selected: null, isolated: false } : {}) })
+    },
     hover: (hovered) => {
       if (get().hovered !== hovered) set({ hovered })
     },
@@ -97,13 +109,19 @@ function dropHiddenSelection(s: AtlasState, systems: Record<SystemId, boolean>) 
   return st && !systems[st.system] ? { selected: null, isolated: false } : {}
 }
 
-/** Is a piece in the current scope (system visible, collection + side filter)? */
+/** The Hand and Shoulder collections always show the arms down. */
+export function effectiveArms(s: Pick<AtlasState, 'arms' | 'collection'>): ArmsPose {
+  return s.collection === 'hand' || s.collection === 'shoulder' ? 'down' : s.arms
+}
+
+/** Is a piece in the current scope (system visible, side filter, collection, arms)? */
 export function inScope(
-  s: Pick<AtlasState, 'systems' | 'collection' | 'side'>,
-  e: { system: SystemId; collections: CollectionId[]; side: string },
+  s: Pick<AtlasState, 'systems' | 'collection' | 'side' | 'arms' | 'data'>,
+  e: { id: string; system: SystemId; collections: CollectionId[]; side: string },
 ) {
   if (!s.systems[e.system]) return false
   if (s.side !== 'both' && e.side !== 'midline' && e.side !== s.side) return false
   if (s.collection && !e.collections.includes(s.collection)) return false
+  if (effectiveArms(s) === 'hidden' && s.data?.upperLimb.has(e.id)) return false
   return true
 }

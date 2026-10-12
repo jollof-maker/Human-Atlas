@@ -4,8 +4,8 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { Box3, MOUSE, MathUtils, TOUCH, Vector3, type PerspectiveCamera } from 'three'
 import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib'
 import type { AtlasData } from '../data/atlasData'
-import { inScope, useAtlas, type AtlasState } from '../state/store'
-import { activeLayout, clamp01, easeInOutCubic, explodeDuration, runtime } from '../state/runtime'
+import { effectiveArms, inScope, useAtlas, type AtlasState } from '../state/store'
+import { ARM_DURATION, activeLayout, clamp01, easeInOutCubic, explodeDuration, runtime } from '../state/runtime'
 
 const FRONT = new Vector3(0, 0, 1)
 /** Info panel width + gap; the view is shifted left by half of this while it is open. */
@@ -82,7 +82,10 @@ export function CameraRig({ data }: { data: AtlasData }) {
       return { target, position: target.clone().addScaledVector(dir, dist) }
     }
 
-    const bodyBox = () => new Box3(new Vector3(...data.manifest.bounds.min), new Vector3(...data.manifest.bounds.max))
+    /** Whole body, including the arms in the pose they are heading to. */
+    const bodyBox = (s: AtlasState = useAtlas.getState()) =>
+      runtime.bodyBox?.(effectiveArms(s) === 'raised' ? 1 : 0) ??
+      new Box3(new Vector3(...data.manifest.bounds.min), new Vector3(...data.manifest.bounds.max))
 
     const scopeBox = (s: AtlasState) => {
       const box = new Box3()
@@ -92,11 +95,11 @@ export function CameraRig({ data }: { data: AtlasData }) {
         const half = new Vector3(...e.size).multiplyScalar(0.5)
         box.expandByPoint(c.clone().sub(half)).expandByPoint(c.add(half))
       }
-      return box.isEmpty() ? bodyBox() : box
+      return box.isEmpty() ? bodyBox(s) : box
     }
 
     const assembledPose = (s: AtlasState): Pose =>
-      s.collection ? poseForBox(scopeBox(s), FRONT, 1.35) : poseForBox(bodyBox(), FRONT, 1.04)
+      s.collection ? poseForBox(scopeBox(s), FRONT, 1.35) : poseForBox(bodyBox(s), FRONT, 1.04)
 
     const sheetPose = (s: AtlasState): Pose => {
       const L = activeLayout(data, s)
@@ -172,6 +175,14 @@ export function CameraRig({ data }: { data: AtlasData }) {
         go(poseForExplode(s, s.explode), explodeDuration(s.explode - prev.explode, s.scrubbing), s.scrubbing)
       } else if ((s.systems !== prev.systems || s.side !== prev.side) && s.explode > 0.02 && !s.selected) {
         go(poseForExplode(s, s.explode), 0.9)
+      } else if (effectiveArms(s) !== effectiveArms(prev) && !s.selected) {
+        // Re-frame alongside the arm motion so raised hands never leave the view.
+        go(poseForExplode(s, s.explode), ARM_DURATION)
+      }
+      if (s.selected && s.selected === prev.selected && effectiveArms(s) !== effectiveArms(prev)) {
+        // A selected limb structure moves with the pose: follow it to where it lands.
+        const key = s.selected
+        queueMicrotask(() => runtime.camera?.focusStructure(key, { duration: ARM_DURATION }))
       }
       if (s.selected && (s.selected !== prev.selected || (s.isolated && !prev.isolated))) {
         // Deferred so the model has applied any layout change from the same update.

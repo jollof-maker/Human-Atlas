@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { PRESETS, SYSTEMS, SYSTEM_IDS } from '../data/systems'
-import { inScope, useAtlas } from '../state/store'
+import { COLLECTIONS, PRESETS, SYSTEMS, SYSTEM_IDS } from '../data/systems'
+import { effectiveArms, inScope, useAtlas, type ArmsPose } from '../state/store'
 import { Segmented, Toggle } from './controls'
 
 type Preset = keyof typeof PRESETS
@@ -10,8 +10,11 @@ export function SystemsPanel() {
   const systems = useAtlas((s) => s.systems)
   const collection = useAtlas((s) => s.collection)
   const side = useAtlas((s) => s.side)
+  const arms = useAtlas((s) => s.arms)
   const toggleSystem = useAtlas((s) => s.toggleSystem)
   const setSystems = useAtlas((s) => s.setSystems)
+  const setArms = useAtlas((s) => s.setArms)
+  const shownArms = effectiveArms({ arms, collection })
 
   const on = SYSTEM_IDS.filter((id) => systems[id])
   const preset = (Object.keys(PRESETS) as Preset[]).find(
@@ -19,8 +22,8 @@ export function SystemsPanel() {
   )
 
   const visible = useMemo(
-    () => data.entries.reduce((n, e) => n + (inScope({ systems, collection, side }, e) ? 1 : 0), 0),
-    [data, systems, collection, side],
+    () => data.entries.reduce((n, e) => n + (inScope({ systems, collection, side, arms, data }, e) ? 1 : 0), 0),
+    [data, systems, collection, side, arms],
   )
 
   return (
@@ -41,6 +44,28 @@ export function SystemsPanel() {
           { value: 'organs', label: 'Organs' },
         ]}
       />
+      <div className="arms">
+        <span className="arms-label" id="arms-label">
+          Arms
+        </span>
+        <Segmented<ArmsPose>
+          label="Arms"
+          value={arms}
+          onChange={setArms}
+          options={[
+            { value: 'down', label: 'Down' },
+            { value: 'raised', label: 'Raised' },
+            { value: 'hidden', label: 'Hidden' },
+          ]}
+        />
+      </div>
+      {arms !== 'down' && shownArms === 'down' ? (
+        <p className="arms-note">
+          Arms shown down for the {COLLECTIONS.find((c) => c.id === collection)?.label} collection.
+        </p>
+      ) : shownArms === 'raised' ? (
+        <p className="arms-note">Approximate pose. Shoulder region is not anatomically accurate.</p>
+      ) : null}
       <ul className="system-list">
         {SYSTEMS.map((s) => (
           <li key={s.id}>

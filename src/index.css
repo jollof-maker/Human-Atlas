@@ -328,6 +328,27 @@ input:focus-visible {
   z-index: -1;
 }
 
+.arms {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding-left: 4px;
+}
+
+.arms-label {
+  font-size: 10.5px;
+  color: var(--muted);
+}
+
+.arms-note {
+  margin: 5px 4px 0;
+  font-size: 9.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
 /* ---------------------------------------------------------- collections -- */
 
 .collections {

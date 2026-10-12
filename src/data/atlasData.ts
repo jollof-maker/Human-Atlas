@@ -1,5 +1,6 @@
 import type { CollectionId, Manifest, ManifestEntry, Side, SystemId } from '../types/anatomy'
 import { SYSTEM_IDS } from './systems'
+import { classifyUpperLimb, type LimbMembership } from './upperLimb'
 
 /**
  * A "structure" is what a person means by one anatomical thing: every piece
@@ -30,6 +31,8 @@ export interface AtlasData {
   /** Lower-case name (side included) -> structure, for resolving curated references. */
   structureByName: Map<string, Structure>
   systemCounts: Record<SystemId, number>
+  /** Pieces that belong to (or cross into) an upper limb, for the Arms pose control. */
+  upperLimb: Map<string, LimbMembership>
   placeholder: boolean
 }
 
@@ -102,6 +105,7 @@ export function indexManifest(manifest: Manifest, placeholder = false): AtlasDat
     structureOfPiece,
     structureByName,
     systemCounts,
+    upperLimb: classifyUpperLimb(entries),
     placeholder,
   }
 }
